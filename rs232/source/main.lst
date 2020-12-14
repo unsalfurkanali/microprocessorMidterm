@@ -1,0 +1,249 @@
+CCS PCM C Compiler, Version 5.015, 5967               14-Dec-20 13:50
+
+               Filename:   C:\Users\Furkan\Desktop\Microprocessor Midterm\rs232\source\main.lst
+
+               ROM used:   182 words (2%)
+                           Largest free fragment is 2048
+               RAM used:   6 (2%) at main() level
+                           10 (3%) worst case
+               Stack used: 1 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   07B
+0003:  NOP
+.................... #include <16F877A.h> 
+.................... //////////// Standard Header file for the PIC16F877A device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F877A 
+0004:  DATA C7,32
+0005:  DATA 74,10
+0006:  DATA B1,16
+0007:  DATA 38,00
+0008:  MOVF   0B,W
+0009:  MOVWF  21
+000A:  BCF    0B.7
+000B:  BSF    03.5
+000C:  BSF    03.6
+000D:  BSF    0C.7
+000E:  BSF    0C.0
+000F:  NOP
+0010:  NOP
+0011:  BCF    03.5
+0012:  BCF    03.6
+0013:  BTFSC  21.7
+0014:  BSF    0B.7
+0015:  BSF    03.6
+0016:  MOVF   0C,W
+0017:  ANDLW  7F
+0018:  BTFSC  03.2
+0019:  GOTO   05E
+001A:  BCF    03.6
+001B:  MOVWF  21
+001C:  BSF    03.6
+001D:  MOVF   0D,W
+001E:  BCF    03.6
+001F:  MOVWF  22
+0020:  BSF    03.6
+0021:  MOVF   0F,W
+0022:  BCF    03.6
+0023:  MOVWF  23
+0024:  MOVF   21,W
+0025:  BTFSS  0C.4
+0026:  GOTO   025
+0027:  MOVWF  19
+0028:  MOVF   22,W
+0029:  BSF    03.6
+002A:  MOVWF  0D
+002B:  BCF    03.6
+002C:  MOVF   23,W
+002D:  BSF    03.6
+002E:  MOVWF  0F
+002F:  BCF    03.6
+0030:  MOVF   0B,W
+0031:  MOVWF  24
+0032:  BCF    0B.7
+0033:  BSF    03.5
+0034:  BSF    03.6
+0035:  BSF    0C.7
+0036:  BSF    0C.0
+0037:  NOP
+0038:  NOP
+0039:  BCF    03.5
+003A:  BCF    03.6
+003B:  BTFSC  24.7
+003C:  BSF    0B.7
+003D:  BSF    03.6
+003E:  RLF    0C,W
+003F:  RLF    0E,W
+0040:  ANDLW  7F
+0041:  BTFSC  03.2
+0042:  GOTO   05E
+0043:  BCF    03.6
+0044:  MOVWF  21
+0045:  BSF    03.6
+0046:  MOVF   0D,W
+0047:  BCF    03.6
+0048:  MOVWF  22
+0049:  BSF    03.6
+004A:  MOVF   0F,W
+004B:  BCF    03.6
+004C:  MOVWF  23
+004D:  MOVF   21,W
+004E:  BTFSS  0C.4
+004F:  GOTO   04E
+0050:  MOVWF  19
+0051:  MOVF   22,W
+0052:  BSF    03.6
+0053:  MOVWF  0D
+0054:  BCF    03.6
+0055:  MOVF   23,W
+0056:  BSF    03.6
+0057:  MOVWF  0F
+0058:  INCF   0D,F
+0059:  BTFSC  03.2
+005A:  INCF   0F,F
+005B:  BCF    03.6
+005C:  GOTO   008
+005D:  BSF    03.6
+005E:  BCF    03.6
+005F:  BCF    0A.3
+0060:  BCF    0A.4
+0061:  GOTO   0A6 (RETURN)
+0062:  MOVF   00,F
+0063:  BTFSC  03.2
+0064:  GOTO   078
+0065:  CLRF   22
+0066:  MOVF   04,W
+0067:  MOVWF  21
+0068:  BCF    22.0
+0069:  BTFSC  03.7
+006A:  BSF    22.0
+006B:  MOVF   00,W
+006C:  BTFSS  0C.4
+006D:  GOTO   06C
+006E:  MOVWF  19
+006F:  MOVF   21,W
+0070:  MOVWF  04
+0071:  BCF    03.7
+0072:  BTFSC  22.0
+0073:  BSF    03.7
+0074:  INCF   04,F
+0075:  BTFSC  03.2
+0076:  INCF   05,F
+0077:  GOTO   062
+0078:  BCF    0A.3
+0079:  BCF    0A.4
+007A:  GOTO   0B0 (RETURN)
+....................  
+.................... #list 
+....................  
+.................... #device ADC=16 
+....................  
+.................... #fuses HS, NOWDT, NOPROTECT, NOLVP 
+....................  
+.................... #use delay(crystal=4000000) 
+....................  
+.................... #use rs232(baud=9600, xmit=pin_c6, rcv=pin_c7) 
+....................  
+.................... #use fast_io(b) 
+.................... #use fast_io(c) 
+....................  
+.................... unsigned int8 x; 
+....................  
+....................  
+.................... void main() 
+007B:  MOVF   03,W
+007C:  ANDLW  1F
+007D:  MOVWF  03
+007E:  MOVLW  19
+007F:  BSF    03.5
+0080:  MOVWF  19
+0081:  MOVLW  A6
+0082:  MOVWF  18
+0083:  MOVLW  90
+0084:  BCF    03.5
+0085:  MOVWF  18
+0086:  BSF    03.5
+0087:  BSF    1F.0
+0088:  BSF    1F.1
+0089:  BSF    1F.2
+008A:  BCF    1F.3
+008B:  MOVLW  07
+008C:  MOVWF  1C
+008D:  BCF    03.7
+.................... { 
+....................    setup_psp(PSP_DISABLED); 
+008E:  BCF    09.4
+....................    setup_timer_2(T2_DISABLED, 0, 1); 
+008F:  MOVLW  00
+0090:  MOVWF  78
+0091:  BCF    03.5
+0092:  MOVWF  12
+0093:  MOVLW  00
+0094:  BSF    03.5
+0095:  MOVWF  12
+....................    setup_adc_ports(NO_ANALOGS); 
+0096:  BSF    1F.0
+0097:  BSF    1F.1
+0098:  BSF    1F.2
+0099:  BCF    1F.3
+....................    setup_adc(ADC_OFF);    
+009A:  BCF    03.5
+009B:  BCF    1F.0
+....................    setup_ccp1(CCP_OFF); 
+009C:  MOVLW  F0
+009D:  ANDWF  17,F
+....................    setup_ccp2(CCP_OFF); 
+009E:  ANDWF  1D,F
+....................     
+....................    printf("Get 1-8"); 
+009F:  MOVLW  04
+00A0:  BSF    03.6
+00A1:  MOVWF  0D
+00A2:  MOVLW  00
+00A3:  MOVWF  0F
+00A4:  BCF    03.6
+00A5:  GOTO   008
+....................    x = getchar(); 
+00A6:  BTFSS  0C.5
+00A7:  GOTO   0A6
+00A8:  MOVF   1A,W
+00A9:  MOVWF  20
+....................     
+....................    printf(x); 
+00AA:  MOVF   20,W
+00AB:  MOVWF  04
+00AC:  BCF    03.7
+00AD:  BTFSC  21.0
+00AE:  BSF    03.7
+00AF:  GOTO   062
+....................    putc(x); 
+00B0:  MOVF   20,W
+00B1:  BTFSS  0C.4
+00B2:  GOTO   0B1
+00B3:  MOVWF  19
+....................     
+....................     
+....................    while(TRUE) 
+....................    { 
+00B4:  GOTO   0B4
+....................    } 
+....................  
+.................... } 
+....................  
+00B5:  SLEEP
+....................  
+
+Configuration Fuses:
+   Word  1: 3F71   XT NOWDT PUT BROWNOUT NOLVP NOCPD NOWRT NODEBUG NOPROTECT

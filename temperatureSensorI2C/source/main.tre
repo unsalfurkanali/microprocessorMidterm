@@ -1,0 +1,60 @@
+ÀÄmain
+   ÀÄMAIN  0/69  Ram=4
+      ÃÄ@cinit1  (Inline)  Ram=0
+      ÃÄlcd_init  0/62  Ram=6
+      ³  ÃÄ@delay_ms1  0/21  Ram=1
+      ³  ÃÄlcd_send_nibble  0/12  Ram=1
+      ³  ÃÄ@delay_ms1  0/21  Ram=1
+      ³  ÃÄlcd_send_nibble  0/12  Ram=1
+      ³  ÃÄ@delay_ms1  0/21  Ram=1
+      ³  ÀÄlcd_send_byte  0/64  Ram=3
+      ³     ÃÄlcd_read_byte  (Inline)  Ram=3
+      ³     ³  ÃÄlcd_read_nibble  0/6  Ram=0
+      ³     ³  ÀÄlcd_read_nibble  0/6  Ram=0
+      ³     ÃÄlcd_send_nibble  0/12  Ram=1
+      ³     ÀÄlcd_send_nibble  0/12  Ram=1
+      ÃÄ@delay_ms1  0/21  Ram=1
+      ÃÄreadTemp  0/755  Ram=12
+      ³  ÃÄ@I2C_WRITE_1  0/92  Ram=1
+      ³  ÃÄ@I2C_WRITE_1  0/92  Ram=1
+      ³  ÃÄ@I2C_WRITE_1  0/92  Ram=1
+      ³  ÃÄ@I2C_WRITE_1  0/92  Ram=1
+      ³  ÃÄ@I2C_WRITE_1  0/92  Ram=1
+      ³  ÃÄ@I2C_WRITE_1  0/92  Ram=1
+      ³  ÃÄ@I2C_WRITE_1  0/92  Ram=1
+      ³  ÃÄ@I2C_READ_1  0/84  Ram=3
+      ³  ÃÄ@ITOF  0/29  Ram=2
+      ³  ÃÄ@I2C_WRITE_1  0/92  Ram=1
+      ³  ÃÄ@I2C_READ_1  0/84  Ram=3
+      ³  ÃÄ@ITOF  0/29  Ram=2
+      ³  ÃÄ@FLT  (Inline)  Ram=10
+      ³  ÃÄ@ADDFF  (Inline)  Ram=16
+      ³  ÃÄ@I2C_WRITE_1  0/92  Ram=1
+      ³  ÀÄ@delay_ms1  0/21  Ram=1
+      ÃÄlcd_putc  0/44  Ram=1
+      ³  ÃÄlcd_gotoxy  0/18  Ram=4
+      ³  ³  ÀÄlcd_send_byte  0/64  Ram=3
+      ³  ³     ÀÄ*
+      ³  ÃÄlcd_send_byte  0/64  Ram=3
+      ³  ³  ÀÄ*
+      ³  ÃÄ@delay_ms1  0/21  Ram=1
+      ³  ÃÄlcd_gotoxy  0/18  Ram=4
+      ³  ³  ÀÄ*
+      ³  ÃÄlcd_send_byte  0/64  Ram=3
+      ³  ³  ÀÄ*
+      ³  ÀÄlcd_send_byte  0/64  Ram=3
+      ³     ÀÄ*
+      ÃÄ@PRINTF_L32D_647FPFPF  0/341  Ram=13
+      ³  ÃÄ@MULFF  (Inline)  Ram=13
+      ³  ÃÄ@FTOSD  (Inline)  Ram=5
+      ³  ÃÄ@DIV3232  0/79  Ram=13
+      ³  ÃÄlcd_putc  0/44  Ram=1
+      ³  ³  ÀÄ*
+      ³  ÃÄlcd_putc  0/44  Ram=1
+      ³  ³  ÀÄ*
+      ³  ÃÄlcd_putc  0/44  Ram=1
+      ³  ³  ÀÄ*
+      ³  ÃÄlcd_putc  0/44  Ram=1
+      ³  ³  ÀÄ*
+      ³  ÀÄ@DIV3232  0/79  Ram=13
+      ÀÄ@delay_ms1  0/21  Ram=1

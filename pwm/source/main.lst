@@ -1,0 +1,178 @@
+CCS PCM C Compiler, Version 5.015, 5967               14-Dec-20 10:58
+
+               Filename:   C:\Users\Furkan\Desktop\Microprocessor Midterm\pwm\source\main.lst
+
+               ROM used:   110 words (1%)
+                           Largest free fragment is 2048
+               RAM used:   8 (2%) at main() level
+                           9 (2%) worst case
+               Stack used: 1 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   02B
+0003:  NOP
+.................... #include <16F877A.h> 
+.................... //////////// Standard Header file for the PIC16F877A device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F877A 
+0004:  CLRF   77
+0005:  CLRF   78
+0006:  MOVF   22,W
+0007:  BCF    03.0
+0008:  BTFSC  23.0
+0009:  ADDWF  77,F
+000A:  RRF    77,F
+000B:  RRF    78,F
+000C:  BTFSC  23.1
+000D:  ADDWF  77,F
+000E:  RRF    77,F
+000F:  RRF    78,F
+0010:  BTFSC  23.2
+0011:  ADDWF  77,F
+0012:  RRF    77,F
+0013:  RRF    78,F
+0014:  BTFSC  23.3
+0015:  ADDWF  77,F
+0016:  RRF    77,F
+0017:  RRF    78,F
+0018:  BTFSC  23.4
+0019:  ADDWF  77,F
+001A:  RRF    77,F
+001B:  RRF    78,F
+001C:  BTFSC  23.5
+001D:  ADDWF  77,F
+001E:  RRF    77,F
+001F:  RRF    78,F
+0020:  BTFSC  23.6
+0021:  ADDWF  77,F
+0022:  RRF    77,F
+0023:  RRF    78,F
+0024:  BTFSC  23.7
+0025:  ADDWF  77,F
+0026:  RRF    77,F
+0027:  RRF    78,F
+0028:  BCF    0A.3
+0029:  BCF    0A.4
+002A:  GOTO   06A (RETURN)
+....................  
+.................... #list 
+....................  
+.................... #device ADC=16 
+....................  
+.................... #FUSES NOWDT                    //No Watch Dog Timer 
+.................... #FUSES NOBROWNOUT               //No brownout reset 
+.................... #FUSES NOLVP                    //No low voltage prgming, B3(PIC16) or B5(PIC18) used for I/O 
+....................  
+.................... #use delay(crystal=4000000) 
+....................  
+.................... #use fast_io(b) 
+.................... #use fast_io(a) 
+....................  
+.................... int i=5; 
+....................  
+.................... void main() 
+002B:  MOVF   03,W
+002C:  ANDLW  1F
+002D:  MOVWF  03
+002E:  MOVLW  05
+002F:  MOVWF  20
+0030:  MOVLW  FF
+0031:  MOVWF  21
+0032:  BSF    03.5
+0033:  BSF    1F.0
+0034:  BSF    1F.1
+0035:  BSF    1F.2
+0036:  BCF    1F.3
+0037:  MOVLW  07
+0038:  MOVWF  1C
+0039:  BCF    03.7
+.................... { 
+....................    setup_psp(PSP_DISABLED); 
+003A:  BCF    09.4
+....................    setup_timer_1(T1_DISABLED); 
+003B:  BCF    03.5
+003C:  CLRF   10
+....................    setup_adc_ports(NO_ANALOGS); 
+003D:  BSF    03.5
+003E:  BSF    1F.0
+003F:  BSF    1F.1
+0040:  BSF    1F.2
+0041:  BCF    1F.3
+....................    setup_adc(ADC_OFF); 
+0042:  BCF    03.5
+0043:  BCF    1F.0
+....................     
+....................    set_tris_a(0x03); 
+0044:  MOVLW  03
+0045:  BSF    03.5
+0046:  MOVWF  05
+....................    set_tris_c(0x00); 
+0047:  MOVLW  00
+0048:  MOVWF  07
+0049:  BCF    03.5
+004A:  MOVWF  21
+....................     
+....................    setup_ccp1(CCP_PWM); 
+004B:  BCF    21.2
+004C:  MOVF   21,W
+004D:  BSF    03.5
+004E:  MOVWF  07
+004F:  BCF    03.5
+0050:  BCF    07.2
+0051:  MOVLW  0C
+0052:  MOVWF  17
+....................    setup_ccp2(CCP_PWM); 
+0053:  BCF    21.1
+0054:  MOVF   21,W
+0055:  BSF    03.5
+0056:  MOVWF  07
+0057:  BCF    03.5
+0058:  BCF    07.1
+0059:  MOVLW  0C
+005A:  MOVWF  1D
+....................     
+....................    setup_timer_2(T2_DIV_BY_16, 120, 5); 
+005B:  MOVLW  20
+005C:  MOVWF  78
+005D:  IORLW  06
+005E:  MOVWF  12
+005F:  MOVLW  78
+0060:  BSF    03.5
+0061:  MOVWF  12
+....................     
+....................    set_pwm1_duty(i); 
+0062:  BCF    03.5
+0063:  MOVF   20,W
+0064:  MOVWF  15
+....................    set_pwm2_duty(i*10); 
+0065:  MOVF   20,W
+0066:  MOVWF  22
+0067:  MOVLW  0A
+0068:  MOVWF  23
+0069:  GOTO   004
+006A:  MOVF   78,W
+006B:  MOVWF  1B
+....................     
+....................     
+....................    while(TRUE) { 
+006C:  GOTO   06C
+....................    } 
+....................  
+.................... } 
+....................  
+006D:  SLEEP
+....................  
+
+Configuration Fuses:
+   Word  1: 3F31   XT NOWDT PUT NOBROWNOUT NOLVP NOCPD NOWRT NODEBUG NOPROTECT

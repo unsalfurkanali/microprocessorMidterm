@@ -1,0 +1,70 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
+008     PSP_DATA
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01B     CCP_2
+01B     CCP_2_LOW
+01C     CCP_2_HIGH
+020-027 U
+028-02F B
+030-037 A
+038-039 writeMatrix.letter
+03A     writeMatrix.repeat
+03B     writeMatrix.i
+03C     writeMatrix.j
+03D     writeMatrix.k
+03E     @delay_ms1.P1
+03E     selection.s
+03E     writeMatrix.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+09C.6   C1OUT
+09C.7   C2OUT
+10D-10E @READ_PROGRAM_MEMORY8.P1
+10D-10E @WRITE_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  selection
+00002C  @goto10569
+000038  writeMatrix
+000058  @delay_ms1
+000073  MAIN
+000073  @cinit1
+00007D  @cinit2
+
+Project Directory:
+    C:\Users\Furkan\Desktop\Microprocessor Midterm\matrix\source\
+
+Project Files:
+    main.c                                                  [08-Dec-20 16:50  CRC=D0D82740]
+    D:\Program Files (x86)\PICC\Devices\16F877A.h           [12-Nov-13 14:35  CRC=81334808]
+
+Source signature=D33EB750
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      PIC16F877A
+    Pointer Size:   16
+    ADC Range:      0-65535
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX8:       main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

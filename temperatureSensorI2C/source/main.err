@@ -1,0 +1,4 @@
+>>> Warning 202 "main.c" Line 52(6,11): Variable never used:   sonuc
+      Memory usage:   ROM=21%      RAM=7% - 14%
+      0 Errors,  1 Warnings.
+Build Successful.
