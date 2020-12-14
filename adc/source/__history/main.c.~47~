@@ -1,0 +1,54 @@
+#include <16F877A.h>
+#device ADC=8
+
+#FUSES NOWDT                    //No Watch Dog Timer
+#FUSES NOBROWNOUT               //No brownout reset
+#FUSES NOLVP                    //No low voltage prgming, B3(PIC16) or B5(PIC18) used for I/O
+
+#use delay(crystal=4000000)
+#define use_portb_lcd TRUE
+#include <lcd.c>
+#use fast_io(a)
+
+signed int16 Kelvin, Celsius;
+char message1[] = "Temp =  00.0 C";
+void main()
+{
+  setup_psp(PSP_DISABLED);
+  setup_timer_1(T1_DISABLED);
+  setup_timer_2(T2_DISABLED, 0, 1);
+  setup_adc_ports(AN0);
+  setup_adc(ADC_CLOCK_INTERNAL);
+  setup_CCP1(CCP_OFF);
+  setup_CCP2(CCP_OFF);
+  
+  set_tris_a(0xff);
+  
+  lcd_init();
+  delay_ms(5);
+  
+  set_adc_channel(0);
+  printf(lcd_putc, "\fTemp : ");
+  delay_ms(0.2);
+  
+  
+   while(TRUE) {
+   Kelvin = read_adc() * 0.489;
+   Celsius = Kelvin - 273;
+   if(Celsius < 0){
+      Celsius = abs(Celsius);                    // Absolute value
+      message1[7] = '-';                         // Put minus '-' sign
+    }
+    else
+      message1[7]  = ' ';                        // Put space ' '
+    if (Celsius > 99)
+      message1[7]  = 1 + 48;                     // Put 1 (of hundred)
+    message1[8]  = (Celsius / 10) % 10  + 48;
+    message1[9]  =  Celsius % 10  + 48;
+    message1[12] = 223;
+    printf(lcd_putc, "/f, %s", message1);
+    delay_ms(500);
+   
+   }
+
+}

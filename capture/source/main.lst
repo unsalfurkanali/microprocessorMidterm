@@ -1,0 +1,220 @@
+CCS PCM C Compiler, Version 5.015, 5967               14-Dec-20 11:04
+
+               Filename:   C:\Users\Furkan\Desktop\Microprocessor Midterm\capture\source\main.lst
+
+               ROM used:   130 words (2%)
+                           Largest free fragment is 2048
+               RAM used:   13 (4%) at main() level
+                           13 (4%) worst case
+               Stack used: 1 locations (0 in main + 1 for interrupts)
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   051
+0003:  NOP
+0004:  MOVWF  7F
+0005:  SWAPF  03,W
+0006:  CLRF   03
+0007:  MOVWF  21
+0008:  MOVF   0A,W
+0009:  MOVWF  20
+000A:  CLRF   0A
+000B:  MOVF   04,W
+000C:  MOVWF  22
+000D:  MOVF   77,W
+000E:  MOVWF  23
+000F:  MOVF   78,W
+0010:  MOVWF  24
+0011:  MOVF   79,W
+0012:  MOVWF  25
+0013:  MOVF   7A,W
+0014:  MOVWF  26
+0015:  BCF    03.7
+0016:  BCF    03.5
+0017:  MOVLW  8C
+0018:  MOVWF  04
+0019:  BTFSS  00.2
+001A:  GOTO   01D
+001B:  BTFSC  0C.2
+001C:  GOTO   034
+001D:  MOVLW  8D
+001E:  MOVWF  04
+001F:  BTFSS  00.0
+0020:  GOTO   023
+0021:  BTFSC  0D.0
+0022:  GOTO   037
+0023:  MOVF   22,W
+0024:  MOVWF  04
+0025:  MOVF   23,W
+0026:  MOVWF  77
+0027:  MOVF   24,W
+0028:  MOVWF  78
+0029:  MOVF   25,W
+002A:  MOVWF  79
+002B:  MOVF   26,W
+002C:  MOVWF  7A
+002D:  MOVF   20,W
+002E:  MOVWF  0A
+002F:  SWAPF  21,W
+0030:  MOVWF  03
+0031:  SWAPF  7F,F
+0032:  SWAPF  7F,W
+0033:  RETFIE
+0034:  BCF    0A.3
+0035:  BCF    0A.4
+0036:  GOTO   03A
+0037:  BCF    0A.3
+0038:  BCF    0A.4
+0039:  GOTO   045
+.................... #include <16F877A.h> 
+.................... //////////// Standard Header file for the PIC16F877A device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F877A 
+....................  
+.................... #list 
+....................  
+.................... #device ADC=16 
+....................  
+.................... #FUSES NOWDT                    //No Watch Dog Timer 
+.................... #FUSES NOBROWNOUT               //No brownout reset 
+.................... #FUSES NOLVP                    //No low voltage prgming, B3(PIC16) or B5(PIC18) used for I/O 
+....................  
+.................... #use delay(crystal=4000000) 
+....................  
+.................... #use fast_io(b) 
+.................... #use fast_io(c) 
+....................  
+.................... int i = 0; 
+....................  
+.................... #INT_CCP1 
+.................... void increasing() { 
+....................    i++; 
+003A:  INCF   27,F
+....................    if(i==10) i=0; 
+003B:  MOVF   27,W
+003C:  SUBLW  0A
+003D:  BTFSC  03.2
+003E:  CLRF   27
+....................    output_b(i); 
+003F:  MOVF   27,W
+0040:  MOVWF  06
+.................... } 
+....................  
+0041:  BCF    0C.2
+0042:  BCF    0A.3
+0043:  BCF    0A.4
+0044:  GOTO   023
+.................... #INT_CCP2 
+.................... void decreasing() { 
+....................    if(i==0) i=1; 
+0045:  MOVF   27,F
+0046:  BTFSS  03.2
+0047:  GOTO   04A
+0048:  MOVLW  01
+0049:  MOVWF  27
+....................     
+....................    i--; 
+004A:  DECF   27,F
+....................    output_b(i); 
+004B:  MOVF   27,W
+004C:  MOVWF  06
+004D:  BCF    0D.0
+004E:  BCF    0A.3
+004F:  BCF    0A.4
+0050:  GOTO   023
+.................... } 
+....................  
+.................... void main() 
+0051:  MOVF   03,W
+0052:  ANDLW  1F
+0053:  MOVWF  03
+0054:  CLRF   27
+0055:  BSF    03.5
+0056:  BSF    1F.0
+0057:  BSF    1F.1
+0058:  BSF    1F.2
+0059:  BCF    1F.3
+005A:  MOVLW  07
+005B:  MOVWF  1C
+005C:  BCF    03.7
+.................... { 
+....................    setup_psp(PSP_DISABLED); 
+005D:  BCF    09.4
+....................    setup_timer_2(T2_DISABLED, 0, 1); 
+005E:  MOVLW  00
+005F:  MOVWF  78
+0060:  BCF    03.5
+0061:  MOVWF  12
+0062:  MOVLW  00
+0063:  BSF    03.5
+0064:  MOVWF  12
+....................    setup_adc_ports(NO_ANALOGS); 
+0065:  BSF    1F.0
+0066:  BSF    1F.1
+0067:  BSF    1F.2
+0068:  BCF    1F.3
+....................    setup_adc(ADC_OFF); 
+0069:  BCF    03.5
+006A:  BCF    1F.0
+....................     
+....................    set_tris_b(0x00); 
+006B:  BSF    03.5
+006C:  MOVWF  06
+....................    set_tris_c(0x07); 
+006D:  MOVLW  07
+006E:  MOVWF  07
+....................     
+....................    output_b(0x00); 
+006F:  BCF    03.5
+0070:  CLRF   06
+....................     
+....................    enable_interrupts(INT_CCP1); 
+0071:  BSF    03.5
+0072:  BSF    0C.2
+....................    enable_interrupts(INT_CCP2); 
+0073:  BSF    0D.0
+....................    enable_interrupts(GLOBAL); 
+0074:  MOVLW  C0
+0075:  BCF    03.5
+0076:  IORWF  0B,F
+....................     
+....................    setup_ccp1(CCP_CAPTURE_RE); 
+0077:  CLRF   17
+0078:  MOVLW  05
+0079:  MOVWF  17
+....................    setup_ccp2(CCP_CAPTURE_RE); 
+007A:  CLRF   1D
+007B:  MOVWF  1D
+....................     
+....................    CCP_1_HIGH=0x00; 
+007C:  CLRF   16
+....................    CCP_1_LOW=0x00; 
+007D:  CLRF   15
+....................     
+....................    CCP_2_HIGH=0x00; 
+007E:  CLRF   1C
+....................    CCP_2_LOW=0x00; 
+007F:  CLRF   1B
+....................     
+....................    while(TRUE) 
+....................    { 
+0080:  GOTO   080
+....................    } 
+....................  
+.................... } 
+....................  
+0081:  SLEEP
+....................  
+
+Configuration Fuses:
+   Word  1: 3F31   XT NOWDT PUT NOBROWNOUT NOLVP NOCPD NOWRT NODEBUG NOPROTECT
